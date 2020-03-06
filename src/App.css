@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 15px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar li {
+  margin-right: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar a {
+  color: blue;
+}
+
+.card {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+}
+
+.card .card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.mb {
+  margin-bottom: 15px;
+}
+
+.mt {
+  margin-top: 15px;
+}
+
+.ml {
+  margin-left: 15px;
+}
+
+.mr {
+  margin-right: 15px;
+}
+
+.m {
+  margin: 15px;
+}
+
+.pb {
+  padding-bottom: 15px;
+}
+
+.pt {
+  padding-top: 15px;
+}
+
+.pl {
+  padding-left: 15px;
+}
+
+.pr {
+  padding-right: 15px;
+}
+
+.p {
+  padding: 15px;
 }

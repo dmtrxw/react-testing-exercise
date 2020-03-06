@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route, Link } from "react-router-dom";
 
-function App() {
+import "./App.css";
+
+import Home from "./Home";
+import TodoList from "./TodoList";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="mb">Todo App</h1>
+      <ul className="navbar">
+        <li>
+          <Link data-testid="link-to-home" to="/">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link data-testid="link-to-todos" to="/todos">
+            Todos
+          </Link>
+        </li>
+      </ul>
+      <hr className="mt mb" />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/todos">
+          <TodoList />
+        </Route>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
