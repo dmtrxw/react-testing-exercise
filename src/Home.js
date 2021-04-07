@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = () => {
+function Home() {
   return <p>Welcome to Todo App, manage your tasks easily!</p>;
 };
 

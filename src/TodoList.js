@@ -1,55 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { addTodo, fetchTodos } from "./store/actions";
+import { addTodo, fetchTodos } from './store/actions';
 
-import TodoItem from "./TodoItem.js";
+function TodoList() {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
-const TodoList = (props) => {
-  const { todos, fetchTodos, addTodo } = props;
-  const [newTodo, setNewTodo] = useState("");
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
-    fetchTodos();
-  }, [fetchTodos]);
-
-  const handleNewTodoChange = (event) => {
-    setNewTodo(event.target.value);
-  };
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    addTodo(newTodo);
-    setNewTodo("");
+    dispatch(addTodo(title));
+
+    setTitle('');
   };
 
   return (
     <>
-      <form className="mb" data-testid="new-todo-form" onSubmit={handleFormSubmit}>
+      <form data-testid="new-todo-form" onSubmit={handleFormSubmit}>
         <input
           data-testid="new-todo-input"
           type="text"
-          value={newTodo}
-          onChange={handleNewTodoChange}
-          placeholder="Enter your todo"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          placeholder="Enter your todo title"
           autoComplete="off"
         />
         <button type="submit">Add</button>
       </form>
-      <p>Your todos</p>
       <div data-testid="todo-list">
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
+          <div key={todo.id} className="card" role="listitem">
+            <h2>{todo.title}</h2>
+          </div>
         ))}
       </div>
     </>
   );
-};
+}
 
-const mapStateToProps = ({ todos }) => ({ todos });
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: (title) => dispatch(addTodo(title)),
-  fetchTodos: () => dispatch(fetchTodos()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default TodoList;

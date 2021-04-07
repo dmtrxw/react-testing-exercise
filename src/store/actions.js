@@ -1,14 +1,14 @@
-import axios from "axios";
+const serverUrl = 'http://localhost:3000';
 
-const serverUrl = "http://localhost:3000";
-
-export const FETCH_TODOS = "FETCH_TODOS";
-export const SUCCESS_FETCH_TODOS = "SUCCESS_FETCH_TODOS";
-export const ADD_TODO = "ADD_TODO";
-export const SUCCESS_ADD_TODO = "SUCCESS_ADD_TODO";
+export const FETCH_TODOS = 'FETCH_TODOS';
+export const SUCCESS_FETCH_TODOS = 'SUCCESS_FETCH_TODOS';
+export const ADD_TODO = 'ADD_TODO';
+export const SUCCESS_ADD_TODO = 'SUCCESS_ADD_TODO';
 
 export const fetchTodos = () => async (dispatch) => {
-  const { data: todos } = await axios.get(`${serverUrl}/todos`);
+  const response = await fetch(`${serverUrl}/todos`);
+  const todos = await response.json();
+
   dispatch(successFetchTodos(todos));
 };
 
@@ -18,7 +18,15 @@ export const successFetchTodos = (todos) => ({
 });
 
 export const addTodo = (title) => async (dispatch) => {
-  const { data: todo } = await axios.post(`${serverUrl}/todos`, { title });
+  const response = await fetch(`${serverUrl}/todos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title }),
+  });
+  const todo = await response.json();
+
   dispatch(successAddTodo(todo));
 };
 

@@ -5,79 +5,51 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="container"
-      >
-        <h1
-          class="mb"
-        >
-          Todo App
-        </h1>
-        <ul
-          class="navbar"
-        >
-          <li>
-            <a
-              data-testid="link-to-home"
-              href="/"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              data-testid="link-to-todos"
-              href="/todos"
-            >
-              Todos
-            </a>
-          </li>
-        </ul>
-        <hr
-          class="mt mb"
-        />
-        <p>
-          Welcome to Todo App, manage your tasks easily!
-        </p>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="container"
-    >
-      <h1
-        class="mb"
-      >
+      <h1>
         Todo App
       </h1>
-      <ul
-        class="navbar"
-      >
-        <li>
-          <a
-            data-testid="link-to-home"
-            href="/"
-          >
-            Home
-          </a>
-        </li>
-        <li>
-          <a
-            data-testid="link-to-todos"
-            href="/todos"
-          >
-            Todos
-          </a>
-        </li>
-      </ul>
-      <hr
-        class="mt mb"
-      />
+      <nav>
+        <a
+          data-testid="link-to-home"
+          href="/"
+        >
+          Home
+        </a>
+        <a
+          data-testid="link-to-todos"
+          href="/todos"
+        >
+          Todos
+        </a>
+      </nav>
+      <hr />
       <p>
         Welcome to Todo App, manage your tasks easily!
       </p>
     </div>
+  </body>,
+  "container": <div>
+    <h1>
+      Todo App
+    </h1>
+    <nav>
+      <a
+        data-testid="link-to-home"
+        href="/"
+      >
+        Home
+      </a>
+      <a
+        data-testid="link-to-todos"
+        href="/todos"
+      >
+        Todos
+      </a>
+    </nav>
+    <hr />
+    <p>
+      Welcome to Todo App, manage your tasks easily!
+    </p>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

@@ -1,17 +1,16 @@
-import React from "react";
-import { render, fireEvent, waitForElement } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
-import axios from "axios";
+import store from './store';
+import App from './App';
 
-import store from "./store";
-import App from "./App";
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
-jest.mock("axios");
-
-test("TodoList works well", async () => {
+test('TodoList should work fine', async () => {
   const app = render(
     <Provider store={store}>
       <Router>
@@ -20,32 +19,40 @@ test("TodoList works well", async () => {
     </Provider>
   );
 
-  axios.get.mockResolvedValueOnce({
-    data: [{ id: 1, title: "Fake Todo from Mock!" }],
+  jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+    json: jest.fn().mockResolvedValueOnce([
+      {
+        id: 1,
+        title: 'Learn how to test React app',
+      },
+    ]),
   });
 
-  fireEvent.click(app.getByTestId("link-to-todos"));
+  fireEvent.click(app.getByTestId('link-to-todos'));
 
-  await waitForElement(() => app.getAllByRole("listitem"));
+  await waitForElement(() => app.getAllByRole('listitem'));
 
-  expect(app.queryByText(/Your todos/)).toBeInTheDocument();
   expect(app.queryByText(/Welcome/)).not.toBeInTheDocument();
+  expect(app.queryByTestId('todo-list').children.length).toBe(1);
 
   const event = {
     target: {
-      value: "Testing is super fun",
+      value: 'Testing is super fun',
     },
   };
 
-  axios.post.mockResolvedValueOnce({
-    data: { id: 2, title: event.target.value },
+  jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+    json: jest.fn().mockResolvedValueOnce({
+      id: 2,
+      title: event.target.value,
+    }),
   });
 
-  fireEvent.change(app.queryByTestId("new-todo-input"), event);
-  fireEvent.submit(app.queryByTestId("new-todo-form"));
+  fireEvent.change(app.queryByTestId('new-todo-input'), event);
+  fireEvent.submit(app.queryByTestId('new-todo-form'));
 
-  await waitForElement(() => app.getAllByRole("listitem"));
+  await waitForElement(() => app.getAllByRole('listitem'));
 
-  expect(app.queryByTestId("todo-list").children.length).toBe(2);
-  expect(app.queryByTestId("todo-list")).toHaveTextContent(event.target.value);
+  expect(app.queryByTestId('todo-list').children.length).toBe(2);
+  expect(app.queryByTestId('todo-list')).toHaveTextContent(event.target.value);
 });

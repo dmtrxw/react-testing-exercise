@@ -1,4 +1,4 @@
-import { SUCCESS_ADD_TODO, SUCCESS_FETCH_TODOS } from "./actions";
+import { SUCCESS_ADD_TODO, SUCCESS_FETCH_TODOS } from './actions';
 
 const initialState = {
   todos: [],
