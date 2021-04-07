@@ -9,8 +9,8 @@ function App() {
     <>
       <h1>Todo App</h1>
       <nav>
-        <Link to="/" data-testid="link-to-home">Home</Link>
-        <Link to="/todos" data-testid="link-to-todos">Todos</Link>
+        <Link to="/">Home</Link>
+        <Link to="/todos">Todos</Link>
       </nav>
       <hr />
       <Switch>

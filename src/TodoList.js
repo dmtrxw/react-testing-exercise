@@ -22,9 +22,8 @@ function TodoList() {
 
   return (
     <>
-      <form data-testid="new-todo-form" onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <input
-          data-testid="new-todo-input"
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -33,7 +32,7 @@ function TodoList() {
         />
         <button type="submit">Add</button>
       </form>
-      <div data-testid="todo-list">
+      <div>
         {todos.map((todo) => (
           <div key={todo.id} className="card" role="listitem">
             <h2>{todo.title}</h2>
